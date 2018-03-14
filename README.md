@@ -65,7 +65,7 @@ Mar 14 11:32:47 ubuntu-xenial c57db3274f55[11300]: source=openweathermap, city="
 TODO
 
 ### 3) Excercise #3
-I've created new Vagrant file to have two nodes - node01/node02, fresh setup. Objectives are:
+I've created new [Vagrant][vf1] file to have two nodes - node01/node02, fresh setup. Objectives are:
 - do the whole setup using ansible and roles
 - make it possible for ansible to accept additional parameters to configure:
     - remote syslog server
@@ -146,5 +146,7 @@ NOTE: /var/log/custom/* directory was not removed though as there's no way of te
 [df1]: https://github.com/martin-0/pnet/blob/master/exercise1/Dockerfile
 [df2]: https://github.com/martin-0/pnet/blob/master/exercise1/daemon.json
 [dl1]: https://docs.docker.com/config/containers/logging/configure/#configure-the-default-logging-driver
+[vf1]: https://github.com/martin-0/pnet/blob/master/exercise3/Vagrantfile
 [pb4]: https://github.com/martin-0/pnet/blob/master/exercise3/playbook.yml
+
 
