@@ -2,7 +2,6 @@ FROM python:2.7
 
 WORKDIR /git/pnet/exercise1/docker
 
-
 # add it to chroot
 ADD ./getweather.py /git/pnet/exercise1/docker
 
