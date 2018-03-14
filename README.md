@@ -59,4 +59,8 @@ localhost                  : ok=2    changed=1    unreachable=0    failed=0
         b) configure the log driver
         https://docs.docker.com/config/containers/logging/configure/#configure-the-default-logging-driver
 
+	create the file file: /etc/docker/daemon.json 
+	# grep openweathermap /var/log/syslog | tail -1
+	Mar 14 10:25:29 ubuntu-xenial f939db3f9c3c[11300]: source=openweathermap, city="Bratislava", description="broken clouds", temp=8.44, humidity=61
+	#
 
