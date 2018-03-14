@@ -1,0 +1,5 @@
+---
+# copy the prepared template of rsyslog.conf where TCP/UDP ports are allowed, restart the rsyslog
+- name: set rsyslog server
+  copy: src=roles/syslog-rs/files/rsyslog.conf-server dest=/etc/rsyslog.conf
+  notify: restart rsyslog

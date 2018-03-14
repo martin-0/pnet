@@ -1,0 +1,9 @@
+# all my nodes
+[mynodes]
+node01
+node02
+
+# server which is set to be rsyslog server 
+# this is not what clients are necesarrily set to
+[syslog-remote-server]
+node01

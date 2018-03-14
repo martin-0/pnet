@@ -1,0 +1,4 @@
+{% for cfile in cprogs%}
+if $programname == "{{ cfile }}" then /var/log/custom/{{cfile}}.log
+& ~
+{% endfor %}

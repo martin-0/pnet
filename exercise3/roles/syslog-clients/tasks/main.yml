@@ -1,0 +1,47 @@
+---
+# cleanup /etc/rsyslog.d/ , find part
+- name: find rsyslog conf files 
+  find: 
+    paths: /etc/rsyslog.d
+    patterns: '*.conf'
+  register: files_to_remove
+
+
+# cleanup /etc/rsyslog.d/ , remove part
+- name: remove matched rsyslog conf files
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ files_to_remove.files }}"
+
+
+# copy the default template do the /etc/rsyslog.d/
+- name: create default config file from template
+  template: src=roles/syslog-clients/templates/50-default.conf.j2 dest=/etc/rsyslog.d/50-default.conf mode=0640
+  notify: restart rsyslog
+
+
+# create /var/log/custom when cprogs are defined
+- name: create custom log directory 
+  file:
+    path: /var/log/custom
+    state: directory
+    mode: 0750
+    owner: syslog
+  when: cprogs is defined
+
+# create custom log files
+- name: create custom log files
+  file:
+    path: "/var/log/custom/{{item}}.log"
+    state: touch
+    mode: 0640
+    owner: syslog
+  with_items: "{{ cprogs }}"
+  when: cprogs is defined
+
+# do create custom logging but only when cprogs are defined
+- name: copy custom files
+  template:  src=roles/syslog-clients/templates/99-custom.conf.jc2 dest=/etc/rsyslog.d/99-custom.conf
+  notify: restart rsyslog
+  when: cprogs is defined

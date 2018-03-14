@@ -1,0 +1,13 @@
+---
+- name: copy hosts file 
+  copy: src=roles/generic/files/hosts dest=/etc/ mode=0644
+
+- name: copy docker file
+  copy: src=roles/generic/files/daemon.json dest=/etc/docker
+  notify: restart docker
+
+- name: install software
+  apt:
+   name: python-pip,nfs-server,autofs5,docker.io
+   update-cache: yes
+

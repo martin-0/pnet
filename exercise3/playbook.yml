@@ -1,0 +1,12 @@
+---
+- hosts: mynodes
+  remote_user: root
+  roles:
+  - generic
+  - syslog-clients
+
+- hosts: syslog-remote-server
+  remote_user: root
+  roles:
+  - syslog-rs
+...
