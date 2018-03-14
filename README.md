@@ -35,7 +35,7 @@ This excercise has following objectives:
   - change default logging device to syslog
   - run the script inside docker and log the result back to syslog
 
-To use the weather API I need to have API key. I can obtain one from [openweatehrmap][ow1].I've created the script [getweather.py][gwpy] and tested it works as expected. 
+To use the weather API I need to have the API key. I can obtain one from [openweatehrmap][ow1]. I've created the script [getweather.py][gwpy] and tested it works as expected. 
 
 I had to go through the docs on how to create such playbook, went through [generic examples][pb1] and [apt module][pb2] docs. I've created the [playbook file][pb3]. I used it to install docker. Then I had to add my current user to the proper docker group. 
 ```sh
