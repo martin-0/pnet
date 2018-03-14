@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+  - name: update repo and install docker.io
+    apt:
+     name: docker.io
+     update_cache: yes
+...
