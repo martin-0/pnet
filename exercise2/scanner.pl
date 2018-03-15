@@ -17,9 +17,8 @@ use Data::Dumper;
 use JSON;
 
 # parse command line options
-my ($debug, $s_target, $db_file) = (0, "", "");
+my ($debug, $s_target) = (0, "");
 GetOptions(     "t|target=s"	=>      \$s_target,
-		"f|file=s"	=>	\$db_file,
 		"d|debug+"	=>	\$debug,
                 "h|?|help"      =>      \&usage
         ) or &usage;
@@ -179,8 +178,8 @@ sub pretty_print {
 
 	print "*Target - $ip: Full scan results:*\n";
 
-	foreach my $port (keys %ipref) {
-		foreach my $proto (keys %{$ipref{$port}}) {
+	foreach my $port (sort { $a <=> $b} keys %ipref) {
+		foreach my $proto (sort keys %{$ipref{$port}}) {
 			print "Host: $ip\tPorts: $port/$ipref{$port}{$proto}/$proto////\n";
 		}
 	}
