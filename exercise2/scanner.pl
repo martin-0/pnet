@@ -5,14 +5,9 @@
 #	- host line always start with "Nmap scan report for"
 #	- port line always start with a "number/"
 #
-# XXX:	there's a way to inject other command line arguments via -t (and even different command for that matter)
-#	probably it would be better to throw regex into it and allow only nmap-allowed target specification
-#
 # NOTES: 
 #	- to avoid loading one big file I'm saving the results to files per IP .. in big big networks I could either put them 
 #	into directories depending on the hash of IP, or maybe I can use some db backend (sqlite?)
-#	
-#
 #
 
 use warnings;
@@ -31,6 +26,14 @@ GetOptions(     "t|target=s"	=>      \$s_target,
 
 # target is required
 usage() if ($s_target eq ""); 
+
+# sanity check on input
+if ($s_target !~ /^[A-Za-z0-9\.\|\-]+$/ ) {
+	print "OOPS: blacklisted character in target specification, aborting.\n";
+	exit(1);
+}
+
+#exit(42);
 
 printf "[I] requested to scan: $s_target\n";
 
