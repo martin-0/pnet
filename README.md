@@ -62,7 +62,7 @@ node01(~)# grep openweathermap /var/log/syslog |tail -1
 Mar 14 11:32:47 ubuntu-xenial c57db3274f55[11300]: source=openweathermap, city="Bratislava", description="broken clouds", temp=8.88, humidity=57
 ```
 ### 2) Excercise #2
-I used perl to create this scanner script. I'm aware there are some common parsers for nmap results and few of them have the nmap module too. In this excersice I didn't use them, I parsed the nmap output myself. Results are saved IP per file in JSON format in current directory as <IP>.jsn. 
+I used perl to create this scanner script. I'm aware there are some common parsers for nmap results and few of them have the nmap module too. In this excersice I didn't use them, I parsed the nmap output myself. Results are saved IP per file in JSON format in current directory as IP.jsn. 
 
 As a prerequisity I had to install nmap:
 ```sh
