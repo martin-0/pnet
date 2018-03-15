@@ -62,7 +62,84 @@ node01(~)# grep openweathermap /var/log/syslog |tail -1
 Mar 14 11:32:47 ubuntu-xenial c57db3274f55[11300]: source=openweathermap, city="Bratislava", description="broken clouds", temp=8.88, humidity=57
 ```
 ### 2) Excercise #2
-TODO
+I used perl to create this scanner script. I'm aware there are some common parsers for nmap results and few of them have the nmap module too. In this excersice I didn't use them, I parsed the nmap output myself. Results are saved in JSON format and saved in file per IP. Files are saved in current directory in JSON format as <IP>.jsn. 
+
+As a prerequisity I had to install nmap:
+```sh
+node01(~)#  apt-get install nmap
+```
+
+I was not sure how should I show found differences among scans. Seems I should only keep state of the previous scan and show all the open ports when state is different from the previous one, i.e. not only the difference but the whole host status.
+IP host can be specified the same way as nmap does.
+
+Scanning the IP for the first time, subsequent scan with no difference:
+```sh
+node01(~)# ./scanner.pl -t 127.0.0.1
+[I] requested to scan: 127.0.0.1
+[I] hosts scanned: 1
+*Target - 127.0.0.1: Full scan results:*
+Host: 127.0.0.1 Ports: 514/open/tcp////
+Host: 127.0.0.1 Ports: 22/open/tcp////
+Host: 127.0.0.1 Ports: 111/open/tcp////
+node01(~)#
+
+node01(~)# ./scanner.pl -t 127.0.0.1
+[I] requested to scan: 127.0.0.1
+[I] hosts scanned: 1
+*Target - 127.0.0.1: No new records found in the last scan.*
+node01(~)#
+```
+Opening tcp port 55 and rescaning host again:
+```sh
+node01(~)# ./scanner.pl -t 127.0.0.1
+[I] requested to scan: 127.0.0.1
+[I] hosts scanned: 1
+*Target - 127.0.0.1: Full scan results:*
+Host: 127.0.0.1 Ports: 55/open/tcp////
+Host: 127.0.0.1 Ports: 111/open/tcp////
+Host: 127.0.0.1 Ports: 22/open/tcp////
+Host: 127.0.0.1 Ports: 514/open/tcp////
+node01(~)#
+```
+
+Scanning multiple hosts, one of the host opens port 66/tcp later in scan:
+```sh
+node01(~)# ./scanner.pl -t 192.168.253.1-2
+[I] requested to scan: 192.168.253.1-2
+[I] hosts scanned: 2
+*Target - 192.168.253.1: Full scan results:*
+Host: 192.168.253.1     Ports: 22/open/tcp////
+Host: 192.168.253.1     Ports: 139/open/tcp////
+Host: 192.168.253.1     Ports: 445/open/tcp////
+
+*Target - 192.168.253.2: Full scan results:*
+Host: 192.168.253.2     Ports: 111/open/tcp////
+Host: 192.168.253.2     Ports: 22/open/tcp////
+node01(~)#
+
+node01(~)# ./scanner.pl -t 192.168.253.1-2
+[I] requested to scan: 192.168.253.1-2
+[I] hosts scanned: 2
+*Target - 192.168.253.1: No new records found in the last scan.*
+*Target - 192.168.253.2: No new records found in the last scan.*
+node01(~)
+
+node01(~)# ./scanner.pl -t 192.168.253.1-2
+[I] requested to scan: 192.168.253.1-2
+[I] hosts scanned: 2
+*Target - 192.168.253.1: Full scan results:*
+Host: 192.168.253.1     Ports: 139/open/tcp////
+Host: 192.168.253.1     Ports: 445/open/tcp////
+Host: 192.168.253.1     Ports: 66/open/tcp////
+Host: 192.168.253.1     Ports: 22/open/tcp////
+
+*Target - 192.168.253.2: No new records found in the last scan.*
+node01(~)#
+```
+
+Used docs: 
+[JSON perl module][pl1]
+[perlmonks][pl2]
 
 ### 3) Excercise #3
 I've created new [Vagrant][vf1] file to have two nodes - node01/node02, fresh setup. Objectives are:
@@ -151,5 +228,7 @@ Additional docs: https://www.rsyslog.com/doc/master/index.html
 [vf1]: https://github.com/martin-0/pnet/blob/master/exercise3/Vagrantfile
 [pb4]: https://github.com/martin-0/pnet/blob/master/exercise3/playbook.yml
 [rs0]: https://www.rsyslog.com/doc/master/index.html
+[pl1]: http://search.cpan.org/~mlehmann/JSON-XS-3.02/XS.pm
+[pl2]: http://www.perlmonks.org/?node_id=1130703
 
 
