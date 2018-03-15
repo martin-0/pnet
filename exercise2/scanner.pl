@@ -1,7 +1,6 @@
 #!/usr/bin/perl
 #
 # ASSUMPTIONS:
-#
 #	- nmap returns port per line
 #	- host line always start with "Nmap scan report for"
 #	- port line always start with a "number/"
@@ -87,6 +86,7 @@ foreach my $ip (sort keys %scan) {
 		}
 	}
 	pretty_print($ip, \%{$scan{$ip}});
+	print "\n";
 }
 
 # parse_scroll(scroll)
@@ -180,7 +180,7 @@ sub pretty_print {
 
 	foreach my $port (keys %ipref) {
 		foreach my $proto (keys %{$ipref{$port}}) {
-			print "Host: $ip\tPorts: $port/$ipref{$port}{$proto}/$proto\n";
+			print "Host: $ip\tPorts: $port/$ipref{$port}{$proto}/$proto////\n";
 		}
 	}
 	print "ip: $ip\n". Dumper(%ipref) if ($debug > 1);
