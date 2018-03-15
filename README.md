@@ -78,9 +78,9 @@ node01(~)# ./scanner.pl -t 127.0.0.1
 [I] requested to scan: 127.0.0.1
 [I] hosts scanned: 1
 *Target - 127.0.0.1: Full scan results:*
-Host: 127.0.0.1 Ports: 514/open/tcp////
 Host: 127.0.0.1 Ports: 22/open/tcp////
 Host: 127.0.0.1 Ports: 111/open/tcp////
+Host: 127.0.0.1 Ports: 514/open/tcp////
 node01(~)#
 
 node01(~)# ./scanner.pl -t 127.0.0.1
@@ -95,9 +95,9 @@ node01(~)# ./scanner.pl -t 127.0.0.1
 [I] requested to scan: 127.0.0.1
 [I] hosts scanned: 1
 *Target - 127.0.0.1: Full scan results:*
+Host: 127.0.0.1 Ports: 22/open/tcp////
 Host: 127.0.0.1 Ports: 55/open/tcp////
 Host: 127.0.0.1 Ports: 111/open/tcp////
-Host: 127.0.0.1 Ports: 22/open/tcp////
 Host: 127.0.0.1 Ports: 514/open/tcp////
 node01(~)#
 ```
@@ -113,8 +113,8 @@ Host: 192.168.253.1     Ports: 139/open/tcp////
 Host: 192.168.253.1     Ports: 445/open/tcp////
 
 *Target - 192.168.253.2: Full scan results:*
-Host: 192.168.253.2     Ports: 111/open/tcp////
 Host: 192.168.253.2     Ports: 22/open/tcp////
+Host: 192.168.253.2     Ports: 111/open/tcp////
 node01(~)#
 
 node01(~)# ./scanner.pl -t 192.168.253.1-2
@@ -128,10 +128,10 @@ node01(~)# ./scanner.pl -t 192.168.253.1-2
 [I] requested to scan: 192.168.253.1-2
 [I] hosts scanned: 2
 *Target - 192.168.253.1: Full scan results:*
+Host: 192.168.253.1     Ports: 22/open/tcp////
+Host: 192.168.253.1     Ports: 66/open/tcp////
 Host: 192.168.253.1     Ports: 139/open/tcp////
 Host: 192.168.253.1     Ports: 445/open/tcp////
-Host: 192.168.253.1     Ports: 66/open/tcp////
-Host: 192.168.253.1     Ports: 22/open/tcp////
 
 *Target - 192.168.253.2: No new records found in the last scan.*
 node01(~)#
