@@ -137,6 +137,8 @@ node02(~)#
 
 NOTE: /var/log/custom/* directory was not removed though as there's no way of telling what else was there before, or if it's actually desired to remove these logs. If yes, it would be possible to remove it the same way as /etc/rsyslog.d/*.conf files were removed. 
 
+Additional docs: https://www.rsyslog.com/doc/master/index.html
+
 [vg1]: https://app.vagrantup.com/boxes/search?provider=virtualbox
 [ow1]: http://openweathermap.org/appid
 [gwpy]:https://github.com/martin-0/pnet/blob/master/exercise1/getweather.py
@@ -148,5 +150,6 @@ NOTE: /var/log/custom/* directory was not removed though as there's no way of te
 [dl1]: https://docs.docker.com/config/containers/logging/configure/#configure-the-default-logging-driver
 [vf1]: https://github.com/martin-0/pnet/blob/master/exercise3/Vagrantfile
 [pb4]: https://github.com/martin-0/pnet/blob/master/exercise3/playbook.yml
+[rs0]: https://www.rsyslog.com/doc/master/index.html
 
 
