@@ -33,8 +33,6 @@ if ($s_target !~ /^[A-Za-z0-9\.\|\-]+$/ ) {
 	exit(1);
 }
 
-#exit(42);
-
 printf "[I] requested to scan: $s_target\n";
 
 # nmap output scroll
