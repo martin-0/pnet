@@ -38,10 +38,9 @@ printf "[I] requested to scan: $s_target\n";
 my @scroll = ();
 
 # XXX: few test cases
-# get the output
 #open(NMAP, "/usr/bin/nmap -P0 -sS -p 1,22,444,9999,55555 ". $s_target. "|") or die("OOPS: nmap execution failed.\n");
 #open(NMAP, "/usr/bin/nmap -sU -sT -p60-70,514 ". $s_target. "|") or die("OOPS: nmap execution failed.\n");
-open(NMAP, "/usr/bin/nmap -P0 -sS -p1-550 ". $s_target. "|") or die("OOPS: nmap execution failed.\n");
+open(NMAP, "/usr/bin/nmap -P0 -sS ". $s_target. "|") or die("OOPS: nmap execution failed.\n");
 push @scroll, $_ while(<NMAP>); 
 close(NMAP);
 
